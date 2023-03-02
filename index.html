@@ -1,0 +1,369 @@
+---
+title: Lotto EV Calculator - JackAce.com
+---
+<html>
+    <head>
+        <title>{{-site.title-}}</title>
+        <link rel="stylesheet" href="/assets/css/main.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+        <script src="/assets/js/lottoev.js"></script>
+        {%- if jekyll.environment == 'production' and site.google_analytics -%}
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id={{-site.google_analytics-}}"></script>
+            <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '{{-site.google_analytics-}}');
+            </script>
+        {%- endif -%}
+        {%- if jekyll.environment == 'production' and site.google_adsense -%}
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.google_adsense }}" crossorigin="anonymous"></script>
+        {%- endif -%}
+    </head>
+    <body>
+      <div id="mainDiv">
+
+        <table>
+          <tr>
+            <th colspan="2">
+              Calculate Expected Value for (click on lotto type):
+            </th>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img src="/assets/img/logos/powerball-200x34.png" onClick="setPowerballParameters();" />
+            </td>
+            <td>
+              <img src="/assets/img/logos/megamillions-200x113.png" onClick="setMegaMillionsParameters();" />
+            </td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <td class="layoutCell">
+              <table>
+                <tr>
+                  <th>
+                    Hit Type
+                  </th>
+                  <th>
+                    Pays
+                  </th>
+                  <th>
+                    Combinations
+                  </th>
+                  <th>
+                    Probability
+                  </th>
+                  <th>
+                    Expected return
+                  </th>
+                </tr>
+                <tr>
+                  <td>
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/plus-grey-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/red-30x30.png" width="30" height="30" />
+                  </td>
+                  <td>
+                    <input id="win_5_1" value="100000000" class="number" maxlength="10" />
+                  </td>
+                  <td class="data-col">
+                    <span id="combinations_5_1_span" />
+                  </td>
+                  <td class="data-col">
+                    <span id="probability_5_1_span" />
+                  </td>
+                  <td class="data-col pieChart-5-1">
+                    <span id="expectedvalue_5_1_span" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                  </td>
+                  <td>
+                    <input id="win_5_0" value="1000000" class="number" maxlength="7" />
+                  </td>
+                  <td class="data-col">
+                    <span id="combinations_5_0_span" />
+                  </td>
+                  <td class="data-col">
+                    <span id="probability_5_0_span" />
+                  </td>
+                  <td class="data-col pieChart-5-0">
+                    <span id="expectedvalue_5_0_span" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/plus-grey-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/red-30x30.png" width="30" height="30" />
+                  </td>
+                  <td>
+                    <input id="win_4_1" value="50000" class="number" maxlength="6" />
+                  </td>
+                  <td class="data-col">
+                    <span id="combinations_4_1_span" />
+                  </td>
+                  <td class="data-col">
+                    <span id="probability_4_1_span" />
+                  </td>
+                  <td class="data-col pieChart-4-1">
+                    <span id="expectedvalue_4_1_span" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                  </td>
+                  <td>
+                    <input id="win_4_0" value="100" class="number" maxlength="4" />
+                  </td>
+                  <td class="data-col">
+                    <span id="combinations_4_0_span" />
+                  </td>
+                  <td class="data-col">
+                    <span id="probability_4_0_span" />
+                  </td>
+                  <td class="data-col pieChart-4-0">
+                    <span id="expectedvalue_4_0_span" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/plus-grey-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/red-30x30.png" width="30" height="30" />
+                  </td>
+                  <td>
+                    <input id="win_3_1" value="100" class="number" maxlength="4" />
+                  </td>
+                  <td class="data-col">
+                    <span id="combinations_3_1_span" />
+                  </td>
+                  <td class="data-col">
+                    <span id="probability_3_1_span" />
+                  </td>
+                  <td class="data-col pieChart-3-1">
+                    <span id="expectedvalue_3_1_span" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                  </td>
+                  <td>
+                    <input id="win_3_0" value="7" class="number" maxlength="2" />
+                  </td>
+                  <td class="data-col">
+                    <span id="combinations_3_0_span" />
+                  </td>
+                  <td class="data-col">
+                    <span id="probability_3_0_span" />
+                  </td>
+                  <td class="data-col pieChart-3-0">
+                    <span id="expectedvalue_3_0_span" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/plus-grey-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/red-30x30.png" width="30" height="30" />
+                  </td>
+                  <td>
+                    <input id="win_2_1" value="7" class="number" maxlength="2" />
+                  </td>
+                  <td class="data-col">
+                    <span id="combinations_2_1_span" />
+                  </td>
+                  <td class="data-col">
+                    <span id="probability_2_1_span" />
+                  </td>
+                  <td class="data-col pieChart-2-1">
+                    <span id="expectedvalue_2_1_span" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                  </td>
+                  <td>
+                    <input id="win_2_0" value="0" class="number" maxlength="2" />
+                  </td>
+                  <td class="data-col">
+                    <span id="combinations_2_0_span" />
+                  </td>
+                  <td class="data-col">
+                    <span id="probability_2_0_span" />
+                  </td>
+                  <td class="data-col pieChart-2-0">
+                    <span id="expectedvalue_2_0_span" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/plus-grey-30x30.png" width="30" height="30" />
+                    <img src="/assets/img/balls/red-30x30.png" width="30" height="30" />
+                  </td>
+                  <td>
+                    <input id="win_1_1" value="4" class="number" maxlength="2" />
+                  </td>
+                  <td class="data-col">
+                    <span id="combinations_1_1_span" />
+                  </td>
+                  <td class="data-col">
+                    <span id="probability_1_1_span" />
+                  </td>
+                  <td class="data-col pieChart-1-1">
+                    <span id="expectedvalue_1_1_span" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <img src="/assets/img/balls/white-30x30.png" width="30" height="30" />
+                  </td>
+                  <td>
+                    <input id="win_1_0" value="0" class="number" maxlength="2" />
+                  </td>
+                  <td class="data-col">
+                    <span id="combinations_1_0_span" />
+                  </td>
+                  <td class="data-col">
+                    <span id="probability_1_0_span" />
+                  </td>
+                  <td class="data-col pieChart-1-0">
+                    <span id="expectedvalue_1_0_span" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <img src="/assets/img/balls/red-30x30.png" width="30" height="30" />
+                  </td>
+                  <td>
+                    <input id="win_0_1" value="4" class="number" maxlength="2" />
+                  </td>
+                  <td class="data-col">
+                    <span id="combinations_0_1_span" />
+                  </td>
+                  <td class="data-col">
+                    <span id="probability_0_1_span" />
+                  </td>
+                  <td class="data-col pieChart-0-1">
+                    <span id="expectedvalue_0_1_span" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                  </td>
+                  <td>
+                    <input id="win_0_0" value="0" class="number" maxlength="2" />
+                  </td>
+                  <td class="data-col">
+                    <span id="combinations_0_0_span" />
+                  </td>
+                  <td class="data-col">
+                    <span id="probability_0_0_span" />
+                  </td>
+                  <td class="data-col pieChart-0-0">
+                    <span id="expectedvalue_0_0_span" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    &nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Total
+                  </td>
+                  <td>
+                  </td>
+                  <td class="data-col">
+                    <span id="totalCombinations" />
+                  </td>
+                  <td class="data-col">
+                    <span id="totalProbability" />
+                  </td>
+                  <td class="data-col">
+                    <span id="totalReturn" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    &nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Ticket Cost
+                  </td>
+                  <td>
+                    <input id="ticketCost" value="2" maxlength="2" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Max Main Number
+                  </td>
+                  <td>
+                    <input id="mainNumberBalls" value="69" maxlength="2" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Oddball Count
+                  </td>
+                  <td>
+                    <input id="oddBalls" value="26" maxlength="2" />
+                  </td>
+                  <td>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </td>
+                  <td>
+                    <input type="button" value="Calculate" onClick="performCalculations();" />
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td class="layoutCell">
+              <div id="canvasContainer" class="piechartContainer">
+                <canvas id="valueChart" class="piechartContainer valueChart"></canvas>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+    </body> 
+</html>

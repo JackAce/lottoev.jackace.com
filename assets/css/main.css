@@ -1,0 +1,74 @@
+body {
+    font-family: Arial;
+    color: #fff;
+    background-color: #116;
+}
+
+input {
+    width: 100px;
+}
+
+td, th {
+    padding: 3px;
+}
+
+th {
+    color: #ffc;
+    font-size: 20px;
+}
+
+.layoutCell {
+    vertical-align: top;
+}
+.data-col {
+    text-align: right;
+}
+.data-neutral {
+    font-style: italic;
+    color: #666;
+}
+.pieChart-5-1 {
+    background-color: rgb(215, 39, 39);
+}
+.pieChart-5-0 {
+    background-color: rgb(66, 115, 176);
+}
+.pieChart-4-1 {
+    background-color: rgb(141, 159, 208);
+}
+.pieChart-4-0 {
+    background-color: rgb(77, 139, 86);
+}
+.pieChart-3-1 {
+    background-color: rgb(131, 88, 162);
+}
+.pieChart-3-0 {
+    background-color: rgb(31, 177, 170);
+}
+.pieChart-2-1 {
+    background-color: rgb(148, 223, 232);
+}
+.pieChart-2-0 {
+    background-color: rgb(96, 96, 96);
+}
+.pieChart-1-1 {
+    background-color: rgb(251, 213, 103);
+}
+.pieChart-1-0 {
+    background-color: rgb(64, 64, 64);
+}
+.pieChart-0-1 {
+    background-color: rgb(255, 139, 105);
+}
+.pieChart-0-0 {
+    background-color: rgb(32, 32, 32);
+}
+
+.piechartContainer {
+    width: 500px;
+    min-width: 500px;
+    max-width: 500px;
+    height: 400px;
+    min-height: 400px;
+    max-height: 400px;
+}
