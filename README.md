@@ -1,3 +1,3 @@
-# edgesorter.jackace.com
+# lottoev.jackace.com
 
-Edge Sorting Baccarat Simulator
+Lotto Expected Value Calculator
