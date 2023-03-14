@@ -38,10 +38,9 @@ function refreshVariables() {
 }
 
 function refreshPayoutArray() {
-  let i, j;
-  for (i = 0; i < 6; i++) {
-    for (j = 0; j < 2; j++) {
-      payoutArray[i][j] = parseInt($(getPayoutId(i, j)).val());
+  for (let i = 0; i < 6; i++) {
+    for (let j = 0; j < 2; j++) {
+      payoutArray[i][j] = parseInt($(getPayoutId(i, j)).val().replace(/,/g, ''));
     }
   }
 }
@@ -78,7 +77,7 @@ function setParameters(ticketCost, mainBallCount, oddBallCount, prizeArray) {
   $('#ticketCost').val(ticketCost);
   for (let i = 0; i < 6; i++) {
     for (let j = 0; j < 2; j++) {
-      $(getPayoutId(i, j)).val(prizeArray[i][j]);
+      $(getPayoutId(i, j)).val(prizeArray[i][j].toLocaleString());
     }
   }
   performCalculations();

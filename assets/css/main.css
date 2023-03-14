@@ -8,6 +8,14 @@ input {
     width: 100px;
 }
 
+input:valid {
+    background-color: #fff;
+}
+
+input:invalid {
+    background-color: lightpink;
+}
+
 td, th {
     padding: 3px;
 }
