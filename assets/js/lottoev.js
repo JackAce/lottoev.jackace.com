@@ -41,6 +41,7 @@ function refreshPayoutArray() {
   for (let i = 0; i < 6; i++) {
     for (let j = 0; j < 2; j++) {
       payoutArray[i][j] = parseInt($(getPayoutId(i, j)).val().replace(/,/g, ''));
+      $(getPayoutId(i, j)).val(payoutArray[i][j].toLocaleString());
     }
   }
 }
@@ -103,7 +104,7 @@ function getAllCombinations() {
 
       $(getCombinationId(i, j)).text((combinations).toLocaleString());
       $(getProbabilityId(i, j)).text('1 in ' + oddsDenominator.toLocaleString());
-      $(getEVId(i, j)).text(currentReturn.toFixed(6));
+      $(getEVId(i, j)).text(100.0 * currentReturn.toFixed(6) + '%');
       if (payoutArray[i][j] === 0) {
         $(getEVId(i, j)).attr('class', 'data-neutral');
       }
@@ -116,8 +117,9 @@ function getAllCombinations() {
 
   $('#totalCombinations').text(totalCombinations.toLocaleString());
   // TODO: Don't cheat below
-  $('#totalProbability').text('1.000000');
-  $('#totalReturn').text(totalReturn.toFixed(6));
+  $('#totalProbability').text('1.000000');0
+  $('#totalReturn').text(100.0 * totalReturn.toFixed(4) + '%');
+  $('#totalEV').text('$' + lottoTicketCost * totalReturn.toFixed(4));
 
   updateChart(valueData);  
 }
@@ -150,12 +152,12 @@ function updateChart(valueData) {
 
   let canvas = document.createElement('canvas');
   canvas.setAttribute('id', 'valueChart');
-  canvas.setAttribute('width', '500');
-  canvas.setAttribute('min-width', '500');
-  canvas.setAttribute('max-width', '500');
-  canvas.setAttribute('height', '400');
-  canvas.setAttribute('min-height', '400');
-  canvas.setAttribute('max-height', '400');
+  canvas.setAttribute('width', '300');
+  canvas.setAttribute('min-width', '300');
+  canvas.setAttribute('max-width', '300');
+  canvas.setAttribute('height', '250');
+  canvas.setAttribute('min-height', '250');
+  canvas.setAttribute('max-height', '250');
   document.querySelector('#canvasContainer').appendChild(canvas);
 
   const ctx = $('#valueChart');
